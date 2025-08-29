@@ -59,3 +59,6 @@ Once you have pushed your new file and you're ready to submit it, go to your `cm
 Once the pull request is created, add `calistaphippen` as a reviewer, copy the link to your pull request, and submit it under `Lab 1` in Brightspace. I will leave comments on your lab in the PR and your lab grade will be available in Brightspace.
 
 This is a change for the class demo. 
+
+Alicia G here; sorry for the spam.
+This is a test to make sure all functions of my home git environment is working.
