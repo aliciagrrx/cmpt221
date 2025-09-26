@@ -29,9 +29,9 @@ def insert_courses():
         # TODO: write a SQL query to insert 3 records 
         query = """
         INSERT into "COURSES" ("COURSENAME", "SEMESTER", "YEAR") VALUES 
-        ("Intro to Programming", "Spring", "2023"),
-        ("Database Management", "Fall", "2024"),
-        ("Software Development II", "Spring", "2025");
+        ('Intro to Programming', 'Spring', '2023'),
+        ('Database Management', 'Fall', '2024'),
+        ('Software Development II', 'Spring', '2025');
         """
         session.execute(text(query))
         session.commit()
