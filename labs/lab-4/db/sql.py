@@ -49,11 +49,11 @@ def update_course():
     try:
         # TODO: write a SQL query to update 1 record
         query = """
-        UPDATE "COURSE" 
-        SET "COURSENAME" = 'ADVANCED DATABASE SYSTEMS',
-        "SEMESTER" = 'FALL',
-        "YEAR" = '2026'
-        WHERE "COURSEID" = 2;
+        UPDATE "Courses" 
+        SET "CourseName" = 'Advanced Database Systems',
+        "Semester" = 'Fall',
+        "Year" = '2026'
+        WHERE "CourseID" = 2;
         """
         result = session.execute(text(query))
         # "save" the changes
