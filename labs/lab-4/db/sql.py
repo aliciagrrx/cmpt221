@@ -28,7 +28,7 @@ def insert_courses():
     try:
         # TODO: write a SQL query to insert 3 records 
         query = """
-        INSERT into "COURSES" ("COURSENAME", "SEMESTER", "YEAR") VALUES 
+        INSERT into "Courses" ("CourseName", "Semester", "Year") VALUES 
         ('Intro to Programming', 'Spring', '2023'),
         ('Database Management', 'Fall', '2024'),
         ('Software Development II', 'Spring', '2025');
