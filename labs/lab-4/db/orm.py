@@ -1,6 +1,7 @@
 """orm.py: sqlalchemy orm used to manage the Professors table"""
 from db.server import get_session
 from db.schema import Professor
+from sqlalchemy import Select
 
 """Lab 4 - Part 2:
 - Insert 3 records into the Professors table
@@ -44,7 +45,7 @@ def update_professor():
     session = get_session()
     try:
         # TODO: get professor to be updated (would ideally be a parameter)
-        professor = session.query(Professor).filter(Professor.ProfessorID == 3).scalar_one_or_none()
+        professor = session.query(Professor).filter(Professor.ProfessorID == 3).one_or_none()
         # TODO: use the sqlalchemy orm to update 1 record
         professor.FirstName = "Margaret"
         # "save" the changes
@@ -62,7 +63,7 @@ def delete_professor():
     session = get_session()
     try:
         # TODO: get professor to be deleted (would ideally be a parameter)
-        professor = session.query(Professor).filter(Professor.ProfessorID == 2).scalar_one_or_none()
+        professor = session.query(Professor).filter(Professor.ProfessorID == 2).one_or_none()
         # TODO: use the sqlalchemy orm to delete 1 record
         session.delete(professor)
         # "save" the changes
