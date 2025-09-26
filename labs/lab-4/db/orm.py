@@ -1,7 +1,7 @@
 """orm.py: sqlalchemy orm used to manage the Professors table"""
 from db.server import get_session
 from db.schema import Professor
-from sqlalchemy import Select
+
 
 """Lab 4 - Part 2:
 - Insert 3 records into the Professors table
