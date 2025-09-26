@@ -73,7 +73,7 @@ def delete_course():
     try:
         # TODO: write a SQL query to delete 1 record
         query = """
-        DELETE FROM "COURSES" WHERE "COURSEID" = 3;
+        DELETE FROM "Courses" WHERE "CourseID" = 3;
         """
         result = session.execute(text(query))
         # "save" the changes
