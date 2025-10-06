@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Lab 5</title>
-        <link rel="stylesheet" href="/static/style.css">
-    </head>
-    <body>
-        <h1>Welcome to Alicia's Lab 5!</h1>
-        <p>May the madness begin! </p>
-    </body>
+<head>
+    <title>Lab 5</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Alicia's Lab 5!</h1>
+    <p>May the madness begin!</p>
+
+    <button onclick="location.href='/templates/sillyEllie.html'">Go to Silly Ellie</button>
+
+</body>
 </html>
