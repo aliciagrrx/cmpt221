@@ -39,11 +39,7 @@ def create_app():
     def index():
         """Home page"""
         return render_template('index.html')
-    
-    @app.route('/sillyEllie')
-    def sillyEllie():
-        return render_template('sillyEllie.html')
-    
+        
     @app.route('/nowyouseeme')
     def now_you_see_me():
         return render_template('nowyouseeme.html')

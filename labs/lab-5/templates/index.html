@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Lab 5</title>
-        <link rel="stylesheet" href="/static/style.css">
-    </head>
-    <body>
-        <h1>Welcome to Lab 5!</h1>
-        <p>Kind of ugly & useless right? </p>
-        <p>Well, get creative and make it even worse.</p>
-    </body>
+<head>
+    <title>Lab 5</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Alicia's Lab 5!</h1>
+    <p>May the madness begin!</p>
+
+    <button onclick="location.href='/sillyEllie'">Go to Silly Ellie</button>
+    <button onclick="location.href='/nowyouseeme'">Now you see me?</button>
+    
+</body>
 </html>
