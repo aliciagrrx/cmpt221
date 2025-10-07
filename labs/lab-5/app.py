@@ -40,11 +40,18 @@ def create_app():
         """Home page"""
         return render_template('index.html')
     
-    # add more routes here!
-
+    @app.route('/sillyEllie')
+    def sillyEllie():
+        return render_template('sillyEllie.html')
+    
+    @app.route('/nowyouseeme')
+    def now_you_see_me():
+        return render_template('nowyouseeme.html')
+    
     return app
 
 if __name__ == "__main__":
+    
     app = create_app()
     # debug refreshes your application with your new changes every time you save
     app.run(debug=True)
