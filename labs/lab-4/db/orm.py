@@ -24,7 +24,11 @@ def insert_professors():
     session = get_session()
     try:
         # TODO: create three professor objects
+        professor1 = Professor(FirstName="Jane", LastName="Doe", Email="jane.doe@marist.edu")
+        professor2 = Professor(FirstName="John", LastName="Smith", Email="john.smith1@marist.edu")
+        professor3 = Professor(FirstName="Amelia", LastName="Airheart", Email="amelia.airheart@marist.edu")
         # TODO: use the sqlalchemy orm to insert the new records as a list of professor objects
+        session.add_all([professor1, professor2, professor3])
         # "save" the changes
         session.commit()
 
@@ -40,7 +44,9 @@ def update_professor():
     session = get_session()
     try:
         # TODO: get professor to be updated (would ideally be a parameter)
+        professor = session.query(Professor).filter(Professor.ProfessorID == 72).one_or_none()
         # TODO: use the sqlalchemy orm to update 1 record
+        professor.FirstName = "Margaret"
         # "save" the changes
         session.commit()
     
@@ -56,7 +62,9 @@ def delete_professor():
     session = get_session()
     try:
         # TODO: get professor to be deleted (would ideally be a parameter)
+        professor = session.query(Professor).filter(Professor.ProfessorID == 71).one_or_none()
         # TODO: use the sqlalchemy orm to delete 1 record
+        session.delete(professor)
         # "save" the changes
         session.commit()
 
