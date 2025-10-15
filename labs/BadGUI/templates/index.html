@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 5</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Alicia's BAD GUI</h1>
+    <p>BAD GUI</p>
+
+    <!--This is purposely pointing to a wrong endpoint - case sensitive error
+    Should return a 404 error-->
+    <button onclick="location.href='/NowYouSeeMe'">Click Here</button>
+    
+</body>
+</html>

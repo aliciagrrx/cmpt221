@@ -1,0 +1,21 @@
+body {
+    background-color: forestgreen;
+  }
+  
+  h1 {
+    color: forestgreen;
+    text-align: center;
+  }
+  
+  p {
+    font-family: verdana;
+    font-size: 20px;
+    text-align: center;
+    color: forestgreen;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+}
