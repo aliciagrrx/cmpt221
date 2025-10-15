@@ -57,7 +57,7 @@ You'll know your virtual environment is activated when you see `(.venv)` in your
 ```bash
 (.venv) calistaphippen@calistas-mac cmpt221 %
 ```
-
+cd
 I've gone ahead and provided you with the requirements.txt file for this lab. All you need is to run a `pip install`, and all the python packages you need (flask, sqlalchemy, psycopg2, dotenv) will be installed.
 
 ```bash
