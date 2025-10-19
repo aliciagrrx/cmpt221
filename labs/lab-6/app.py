@@ -3,8 +3,7 @@
 import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, session, url_for
-from sqlalchemy import insert
-from db.query import get_all
+from db.query import get_all, insert
 from db.server import get_session, init_database
 from db.schema import Users
 
