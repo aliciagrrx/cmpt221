@@ -2,9 +2,9 @@
 
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
-from db.query import get_all
-from db.server import init_database
+from flask import Flask, render_template, request, redirect, session, url_for
+from db.query import get_all, insert
+from db.server import get_session, init_database
 from db.schema import Users
 
 # load environment variables from .env
@@ -42,18 +42,48 @@ def create_app():
         """Home page"""
         return render_template('index.html')
     
-    @app.route('/signup')
+    @app.route('/signup', methods=['GET','POST'])
     def signup():
         """Sign up page: enables users to sign up"""
-        #TODO: implement sign up logic here
+        if request.method == 'POST':
+            try:
+                user = Users(FirstName=request.form["fname"],
+                            LastName=request.form["lname"],
+                            Email=request.form["email"],
+                            PhoneNumber=request.form["phone"],
+                            Password=request.form["password"])
+                
+                insert(user)
+                
+                return redirect(url_for('index'))
+                
+            except Exception as e:
+                print("Error inserting records:", e)
+            
 
         return render_template('signup.html')
     
-    @app.route('/login')
+    @app.route('/login', methods=['GET','POST'])
     def login():
         """Log in page: enables users to log in"""
-        # TODO: implement login logic here
+        if request.method == 'POST':
+            email = request.form['email']
+            password = request.form['password']
 
+            session = get_session()
+            try:
+                # Query for a user that matches both email and password
+                user = session.query(Users).filter_by(Email=email, Password=password).first()
+
+                if user:
+                    # Login successful
+                    return redirect(url_for('success'))
+                else:
+                    # Login failed
+                    return render_template('login.html', error="Invalid email or password")
+            finally:
+                session.close()
+        # GET request: just render the login form
         return render_template('login.html')
 
     @app.route('/users')
