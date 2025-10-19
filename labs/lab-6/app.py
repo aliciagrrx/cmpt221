@@ -66,9 +66,21 @@ def create_app():
     @app.route('/login')
     def login():
         """Log in page: enables users to log in"""
-        # TODO: implement login logic here
+        if request.method == 'POST':
+            email = request.form['email']
+            password = request.form['password']
 
-        return render_template('login.html')
+        # Fetch all users (or you can filter in query if preferred)
+        users = get_all(Users)
+
+        # Check for a match
+        for user in users:
+            if user.Email == email and user.Password == password:
+                # Login successful
+                return redirect(url_for('success'))
+
+        # If no match found
+        return render_template('login.html', error="Invalid email or password")
 
     @app.route('/users')
     def users():
