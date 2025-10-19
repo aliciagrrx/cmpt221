@@ -48,19 +48,19 @@ def create_app():
         """Sign up page: enables users to sign up"""
         if request.method == 'POST':
             try:
-                user = user(FirstName=request.form["fname"],
+                user = Users(FirstName=request.form["fname"],
                             LastName=request.form["lname"],
                             Email=request.form["email"],
-                            Telephone=request.form["telephone"],
+                            Telephone=request.form["tel"],
                             Password=request.form["password"])
                 
                 insert(user)
                 
-            except Exception as e:
-                    session.rollback()
-                    print("Error inserting records:", e)
+                return redirect(url_for('index'))
                 
-            return redirect(url_for('index'))
+            except Exception as e:
+                print("Error inserting records:", e)
+            
 
         return render_template('signup.html')
     
