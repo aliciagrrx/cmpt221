@@ -2,9 +2,10 @@
 
 import os
 from dotenv import load_dotenv
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, session, url_for
+from sqlalchemy import insert
 from db.query import get_all
-from db.server import init_database
+from db.server import get_session, init_database
 from db.schema import Users
 
 # load environment variables from .env
@@ -42,10 +43,24 @@ def create_app():
         """Home page"""
         return render_template('index.html')
     
-    @app.route('/signup')
+    @app.route('/signup', methods=['GET','POST'])
     def signup():
         """Sign up page: enables users to sign up"""
-        #TODO: implement sign up logic here
+        if request.method == 'POST':
+            try:
+                user = user(FirstName=request.form["fname"],
+                            LastName=request.form["lname"],
+                            Email=request.form["email"],
+                            Telephone=request.form["telephone"],
+                            Password=request.form["password"])
+                
+                insert(user)
+                
+            except Exception as e:
+                    session.rollback()
+                    print("Error inserting records:", e)
+                
+            return redirect(url_for('index'))
 
         return render_template('signup.html')
     
