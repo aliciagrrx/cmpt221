@@ -50,7 +50,7 @@ def create_app():
                 user = Users(FirstName=request.form["fname"],
                             LastName=request.form["lname"],
                             Email=request.form["email"],
-                            Telephone=request.form["telephone"],
+                            PhoneNumber=request.form["phone"],
                             Password=request.form["password"])
                 
                 insert(user)
