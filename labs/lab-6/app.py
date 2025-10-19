@@ -71,21 +71,20 @@ def create_app():
             password = request.form['password']
 
             session = get_session()
-        try:
-            # Query for a user that matches both email and password
-            user = session.query(Users).filter_by(Email=email, Password=password).first()
+            try:
+                # Query for a user that matches both email and password
+                user = session.query(Users).filter_by(Email=email, Password=password).first()
 
-            if user:
-                # Login successful
-                return redirect(url_for('success'))
-            else:
-                # Login failed
-                return render_template('login.html', error="Invalid email or password")
-        finally:
-            session.close()
-
-    # GET request: render the login form
-    return render_template('login.html')
+                if user:
+                    # Login successful
+                    return redirect(url_for('success'))
+                else:
+                    # Login failed
+                    return render_template('login.html', error="Invalid email or password")
+            finally:
+                session.close()
+        # GET request: just render the login form
+        return render_template('login.html')
 
     @app.route('/users')
     def users():
