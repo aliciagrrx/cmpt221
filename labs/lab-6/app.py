@@ -63,7 +63,7 @@ def create_app():
 
         return render_template('signup.html')
     
-    @app.route('/login')
+    @app.route('/login', methods=['GET','POST'])
     def login():
         """Log in page: enables users to log in"""
         if request.method == 'POST':
