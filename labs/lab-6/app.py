@@ -70,17 +70,22 @@ def create_app():
             email = request.form['email']
             password = request.form['password']
 
-            # Fetch all users (or you can filter in query if preferred)
-            users = get_all(Users)
+            session = get_session()
+        try:
+            # Query for a user that matches both email and password
+            user = session.query(Users).filter_by(Email=email, Password=password).first()
 
-            # Check for a match
-            for user in users:
-                if user.Email == email and user.Password == password:
-                    # Login successful
-                    return redirect(url_for('success'))
+            if user:
+                # Login successful
+                return redirect(url_for('success'))
+            else:
+                # Login failed
+                return render_template('login.html', error="Invalid email or password")
+        finally:
+            session.close()
 
-            # If no match found
-            return render_template('login.html', error="Invalid email or password")
+    # GET request: render the login form
+    return render_template('login.html')
 
     @app.route('/users')
     def users():
