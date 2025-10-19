@@ -70,17 +70,17 @@ def create_app():
             email = request.form['email']
             password = request.form['password']
 
-        # Fetch all users (or you can filter in query if preferred)
-        users = get_all(Users)
+            # Fetch all users (or you can filter in query if preferred)
+            users = get_all(Users)
 
-        # Check for a match
-        for user in users:
-            if user.Email == email and user.Password == password:
-                # Login successful
-                return redirect(url_for('success'))
+            # Check for a match
+            for user in users:
+                if user.Email == email and user.Password == password:
+                    # Login successful
+                    return redirect(url_for('success'))
 
-        # If no match found
-        return render_template('login.html', error="Invalid email or password")
+            # If no match found
+            return render_template('login.html', error="Invalid email or password")
 
     @app.route('/users')
     def users():
