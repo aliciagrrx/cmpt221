@@ -52,11 +52,16 @@ def create_app():
               if is_valid:
                 insert_stmt = insert(User).values(request.form)  
                 try:
+                    #password hashing with bcrypt
+                    plain_pw = request.form["password"]
+                    hashed_pw = bcrypt.hashed_pw(plain_pw.encode('utf-8'), bcrypt.gensalt().decode('utf-8'))
+                    
                     user = Users(FirstName=request.form["fname"],
                                 LastName=request.form["lname"],
                                 Email=request.form["email"],
                                 PhoneNumber=request.form["phone"],
-                                Password=request.form["password"])
+                                Password = hashed_pw )
+                                #Password=request.form["password"])
                     if request.form["FirstName"].isalpha():
                         print(f'Input: {request.form["FirstName"]} is valid.')
                         is_valid = True
