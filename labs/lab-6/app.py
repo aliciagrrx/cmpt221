@@ -89,7 +89,9 @@ def create_app():
                     
             except Exception as e:
                 print("Error inserting records:", e)
-            
+                user_error_msg = "Something went wrong. IDK I am losing my mind. Please try again later."
+                return render_template('error.html', error=user_error_msg)
+                logger.error(f"An error has occured: {error}")
 
         return render_template('signup.html')
     
