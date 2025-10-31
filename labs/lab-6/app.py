@@ -1,6 +1,7 @@
 """app.py: render and route to webpages"""
 
 import os
+import bcrypt
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, session, url_for
 from db.query import get_all, insert
@@ -49,40 +50,48 @@ def create_app():
         is_valid: bool = False  
             
         if request.method == 'POST':
-              if is_valid:
-                insert_stmt = insert(User).values(request.form)  
-                try:
-                    #password hashing with bcrypt
-                    plain_pw = request.form["password"]
-                    hashed_pw = bcrypt.hashed_pw(plain_pw.encode('utf-8'), bcrypt.gensalt().decode('utf-8'))
+            try:
+                fname = request.form["fname"]
+                lname = request.form["lname"]
+                email = request.form["email"]
+                phone = request.form["phone"]
+                password = request.form["password"]
                     
-                    user = Users(FirstName=request.form["fname"],
-                                LastName=request.form["lname"],
-                                Email=request.form["email"],
-                                PhoneNumber=request.form["phone"],
-                                Password = hashed_pw )
-                                #Password=request.form["password"])
-                    if request.form["FirstName"].isalpha():
-                        print(f'Input: {request.form["FirstName"]} is valid.')
-                        is_valid = True
-                    else:
-                        error_msg = f'Input: {request.form["FirstName"]} is INVALID! First Name can only contain letters.'
-                        print(f'Input: {request.form["FirstName"]} is valid.')
-                        error = error_msg
+                if is_valid:
+                    insert_stmt = insert(User) 
+                            
+                if request.form["FirstName"].isalpha():
+                    print(f'Input: {request.form["FirstName"]} is valid.')
+                    is_valid = True
+                else:
+                    error_msg = f'Input: {request.form["FirstName"]} is INVALID! First Name can only contain letters.'
+                    print(f'Input: {request.form["FirstName"]} is valid.')
+                    error = error_msg
                         
-                    if request.form["LastName"].isalpha():
-                        print(f'Input: {request.form["LastName"]} is valid.')
-                        is_valid = True
-                    else:
-                        error_msg = f'Input: {request.form["LastName"]} is INVALID! Last Name can only contain letters.'
-                        print(f'Input: {request.form["LastName"]} is valid.')
-                        error = error_msg    
+                if request.form["LastName"].isalpha():
+                    print(f'Input: {request.form["LastName"]} is valid.')
+                    is_valid = True
+                else:
+                    error_msg = f'Input: {request.form["LastName"]} is INVALID! Last Name can only contain letters.'
+                    print(f'Input: {request.form["LastName"]} is valid.')
+                    error = error_msg
+                        
+                # If valid → hash password and insert
+                if is_valid:
+                    hashed_pw = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+                        
+                    user = Users(
+                        FirstName=fname,
+                        LastName=lname,
+                        Email=email,
+                        PhoneNumber=phone,
+                        Password=hashed_pw)
                     insert(user)
                     
                     return redirect(url_for('index'))
                     
-                except Exception as e:
-                    print("Error inserting records:", e)
+            except Exception as e:
+                print("Error inserting records:", e)
             
 
         return render_template('signup.html')
