@@ -45,20 +45,39 @@ def create_app():
     @app.route('/signup', methods=['GET','POST'])
     def signup():
         """Sign up page: enables users to sign up"""
+        error: str
+        is_valid: bool = False  
+            
         if request.method == 'POST':
-            try:
-                user = Users(FirstName=request.form["fname"],
-                            LastName=request.form["lname"],
-                            Email=request.form["email"],
-                            PhoneNumber=request.form["phone"],
-                            Password=request.form["password"])
-                
-                insert(user)
-                
-                return redirect(url_for('index'))
-                
-            except Exception as e:
-                print("Error inserting records:", e)
+              if is_valid:
+                insert_stmt = insert(User).values(request.form)  
+                try:
+                    user = Users(FirstName=request.form["fname"],
+                                LastName=request.form["lname"],
+                                Email=request.form["email"],
+                                PhoneNumber=request.form["phone"],
+                                Password=request.form["password"])
+                    if request.form["FirstName"].isalpha():
+                        print(f'Input: {request.form["FirstName"]} is valid.')
+                        is_valid = True
+                    else:
+                        error_msg = f'Input: {request.form["FirstName"]} is INVALID! First Name can only contain letters.'
+                        print(f'Input: {request.form["FirstName"]} is valid.')
+                        error = error_msg
+                        
+                    if request.form["LastName"].isalpha():
+                        print(f'Input: {request.form["LastName"]} is valid.')
+                        is_valid = True
+                    else:
+                        error_msg = f'Input: {request.form["LastName"]} is INVALID! Last Name can only contain letters.'
+                        print(f'Input: {request.form["LastName"]} is valid.')
+                        error = error_msg    
+                    insert(user)
+                    
+                    return redirect(url_for('index'))
+                    
+                except Exception as e:
+                    print("Error inserting records:", e)
             
 
         return render_template('signup.html')
