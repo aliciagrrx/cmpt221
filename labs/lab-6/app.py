@@ -56,24 +56,21 @@ def create_app():
                 email = request.form["email"]
                 phone = request.form["phone"]
                 password = request.form["password"]
-                    
-                if is_valid:
-                    insert_stmt = insert(User) 
                             
-                if request.form["FirstName"].isalpha():
-                    print(f'Input: {request.form["FirstName"]} is valid.')
+                if fname.isalpha():
+                    print(f'Input: {fname} is valid.')
                     is_valid = True
                 else:
-                    error_msg = f'Input: {request.form["FirstName"]} is INVALID! First Name can only contain letters.'
-                    print(f'Input: {request.form["FirstName"]} is valid.')
+                    error_msg = f'Input: {fname} is INVALID! First Name can only contain letters.'
+                    print(f'Input: {fname} is valid.')
                     error = error_msg
                         
-                if request.form["LastName"].isalpha():
-                    print(f'Input: {request.form["LastName"]} is valid.')
+                if lname.isalpha():
+                    print(f'Input: {lname} is valid.')
                     is_valid = True
                 else:
-                    error_msg = f'Input: {request.form["LastName"]} is INVALID! Last Name can only contain letters.'
-                    print(f'Input: {request.form["LastName"]} is valid.')
+                    error_msg = f'Input: {lname} is INVALID! Last Name can only contain letters.'
+                    print(f'Input: {lname} is valid.')
                     error = error_msg
                         
                 # If valid → hash password and insert
