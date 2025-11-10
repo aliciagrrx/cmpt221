@@ -61,7 +61,7 @@ def test_login_with_valid_credentials(client):
         
 def test_login_with_invalid_credentials(client):
     """Test login with wrong password"""
-    response.client.post('/login', data={
+    response = client.post('/login', data={
         'Email':'janedoe@test.com',
         'Password':'wrongpassword789' #Invalid PW
     })
