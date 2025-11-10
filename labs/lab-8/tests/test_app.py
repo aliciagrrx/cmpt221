@@ -37,7 +37,7 @@ def test_invalid_phone_number(client):
     })
     assert b'Phone number must be exactly 10 digits' in response.data
     
-    # My 5 pytest below:
+# My 5 pytest below:
 def test_valid_signup(client):
     """Test signup with valid data"""
     response = client.post('/signup', data={
