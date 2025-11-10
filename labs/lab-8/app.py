@@ -8,6 +8,7 @@ from db.query import get_all, get_one, insert
 from db.server import init_database
 from db.schema import Users
 import bcrypt
+import re
 
 # load environment variables from .env
 load_dotenv()
@@ -92,6 +93,19 @@ def create_app():
                     error = "Phone number must be exactly 10 digits."
                     logger.warning(f"Invalid phone number attempt: {phone_number}")
                     return render_template('signup.html', error=error)
+                
+                # validate email format
+                email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+                if not re.match(email_regex, email):
+                    error = "Invalid email format."
+                    logger.warning(f"Invalid email attempt: {email}")
+                    return render_template('signup.html', error=error)
+                
+                if not password:
+                    error = "Password is required."
+                    logger.warning(f"Empty password attempt for: {email}")
+                    return render_template('signup.html', error=error)
+
                 
                 # all validation passed - proceed with signup
                 # hash and salt the password using bcrypt

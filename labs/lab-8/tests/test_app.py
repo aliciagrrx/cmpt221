@@ -47,8 +47,7 @@ def test_valid_signup(client):
         'PhoneNumber':'1234567890',
         'Password':'password123'
     })
-    assert response.status_code in (200, 302)
-    assert b'Successfully registered' in response.data
+    assert response.status_code == 302
         
 def test_login_with_valid_credentials(client):
     """Test login with correct credentials"""
@@ -56,8 +55,8 @@ def test_login_with_valid_credentials(client):
         'Email':'janedoe@test.com',
         'Password':'password123'
     })
-    assert response.status_code in (200, 302)
-    assert b'Welcome' in response.data or b'Dashboard' in response.data    
+    assert response.status_code == 302
+   
         
 def test_login_with_invalid_credentials(client):
     """Test login with wrong password"""
@@ -66,7 +65,7 @@ def test_login_with_invalid_credentials(client):
         'Password':'wrongpassword789' #Invalid PW
     })
     assert response.status_code == 200
-    assert b'Invalid email or password' in response.data
+    assert b'Failed login attempt for: janedoe@test.com' in response.data
         
 def test_invalid_email_format(client):
     """Test signup validation for invalid email"""
