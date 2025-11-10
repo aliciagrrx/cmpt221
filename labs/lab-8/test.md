@@ -13,7 +13,7 @@
     ```bash
     git pull --no-edit
     ```
-5. Create a branch for lab 6
+5. Create a branch for lab 8
     ```bash
     git checkout -b "lab-8" 
     ```
