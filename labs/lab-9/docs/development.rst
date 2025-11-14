@@ -37,7 +37,7 @@ Unit tests are developed using Pytest. To run the test suite, issue:
 
 Build Documentation
 -------------------
-The Github pages site is used to publish documentation for the CMPT221 application at <github-pages-link>
+The Github pages site is used to publish documentation for the CMPT221 application at https://aliciagrrx.github.io/cmpt221/
 
 To build the documentation, issue:
 
