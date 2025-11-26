@@ -69,7 +69,7 @@ Create documentation for the CMPT221 lab repository by following the prompts in 
 To deploy your documentation, issue:
 ```bash
 make html
-# for windows users without make installed:
+# for windows users without make:
 make.bat html
 # or
 python3 -m sphinx.cmd.build . _build
