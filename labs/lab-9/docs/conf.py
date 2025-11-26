@@ -26,3 +26,11 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',   # <-- THIS is what makes your pages show up
+        'relations.html',
+        'searchbox.html',
+    ]
+}
