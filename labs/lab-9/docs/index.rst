@@ -14,8 +14,8 @@ documentation for details.
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   introduction.rst
-   development.rst
-   resources.rst
-   troubleshooting.rst
+   introduction
+   development
+   resources
+   troubleshooting
 
