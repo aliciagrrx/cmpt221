@@ -29,8 +29,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # database connection - values set in .env
-db_name = os.getenv('db_name')
-db_owner = os.getenv('db_owner')
+db_name = os.getenv('db_name', 'localhost')
+db_owner = os.getenv('db_owner', '5432')
 db_pass = os.getenv('db_pass')
 db_url = f"postgresql://{db_owner}:{db_pass}@localhost/{db_name}"
 
@@ -193,4 +193,4 @@ def create_app():
 if __name__ == "__main__":
     app = create_app()
     # debug refreshes your application with your new changes every time you save
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
