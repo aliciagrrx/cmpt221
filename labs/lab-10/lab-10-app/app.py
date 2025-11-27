@@ -33,7 +33,7 @@ db_host = os.getenv("db_host", "localhost")
 db_user = os.getenv("db_owner")
 db_pass = os.getenv("db_pass")
 db_name = os.getenv("db_name")
-db_url = f"postgresql://{db_owner}:{db_pass}@localhost/{db_name}"
+db_url = f"postgresql://{db_user}:{db_pass}@{db_host}:5432/{db_name}"
 
 def create_app():
     """Create Flask application and connect to your DB"""
