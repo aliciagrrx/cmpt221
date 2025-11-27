@@ -29,7 +29,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # database connection - values set in .env
-db_host = os.getenv("db_host", "localhost")
+db_host = os.getenv("db_host", "db")
 db_user = os.getenv("db_owner")
 db_pass = os.getenv("db_pass")
 db_name = os.getenv("db_name")
