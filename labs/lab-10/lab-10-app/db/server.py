@@ -13,9 +13,10 @@ load_dotenv()
 Base = declarative_base()
 
 # database connection - values set in .env
-db_name = os.getenv('db_name', 'db')
-db_owner = os.getenv('db_owner', '5432')
-db_pass = os.getenv('db_pass')
+db_host = os.getenv("db_host", "db")
+db_user = os.getenv("db_owner")
+db_pass = os.getenv("db_pass")
+db_name = os.getenv("db_name")
 db_url = f"postgresql://{db_user}:{db_pass}@{db_host}:5432/{db_name}"
 engine = create_engine(db_url)
 
